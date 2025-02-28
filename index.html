@@ -5,13 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
     <script>
-        // Function to get URL parameters from Qualtrics
         function getParameterByName(name) {
-            let url = new URL(window.location.href);
-            return url.searchParams.get(name);
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function forceRedirect(url, delay) {
+            setTimeout(function () {
+                console.log("Redirecting to:", url);
+                window.location.replace(url); // Forces immediate redirect
+            }, delay);
         }
 
         window.onload = function () {
-            // Define URLs
-            let prolificURL = "https://app.prolific.co/submissions/complete?cc=XXXXXXX"; // REPLACE with your Prolific completion link
-            let indeedURL = "https://www.indeed.com/jobs?q=retail&l=&vjk=288ed68f3d0461
+            const prolificURL = "https://app.prolific.co/submissions/complete?cc=XXXXXXX"; // Replace XXXXXXX with your Prolific completion code
+            const indeedURL = "https://www.indeed.com/jobs?q=retail&l=&vjk=288ed68f3d0461bb";
+            const wantsJobs = getParameterByName("WantsJobs");
+
+            console.log("Participant selection:", wantsJobs);
+
+            // First, redirect to Prolific
+            forceRedirect(prolificURL, 1000);
+
+            // Then, if they selected "Yes", redirect to Indeed
+            if (wantsJobs === "Yes") {
+                forceRedirect(indeedURL, 4000);
+            }
+        };
+    </script>
+</head>
+<body>
+    <h2>Redirecting...</h2>
+    <p>Please wait while we finalize your submission.</p>
+</body>
+</html>
+
