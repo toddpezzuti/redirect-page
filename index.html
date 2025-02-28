@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        // Function to get URL parameters from Qualtrics
+        function getParameterByName(name) {
+            let url = new URL(window.location.href);
+            return url.searchParams.get(name);
+        }
+
+        window.onload = function () {
+            // Define URLs
+            let prolificURL = "https://app.prolific.co/submissions/complete?cc=XXXXXXX"; // REPLACE with your Prolific completion link
+            let indeedURL = "https://www.indeed.com/jobs?q=retail&l=&vjk=288ed68f3d0461
